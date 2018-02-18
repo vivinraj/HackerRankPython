@@ -1,3 +1,10 @@
+#Question
+#Task
+#You are given a string . It consists of alphanumeric characters, spaces and symbols(+,-).
+#Your task is to find all the substrings of  that contains  or more vowels.
+#Also, these substrings must lie in between  consonants and should contain vowels only.
+
+
 #import re
 #re.finditer(r'\w','http://www.hackerrank.com/')
 #<callable-iterator object at 0x0266C790>
@@ -10,40 +17,35 @@ I = input()
 a = re.findall(r'\w',I)
 P1 = 0
 P2 = 0
-P3 = 0
-P4 = 0
-for i in a :
-    print(i)
-    if i in ("A", "E", "I", "O" , "U" , "a" , "e" , "i" , "o" , "u") and P1 == 1 and P2 == 0 and P3==0 and P4 ==0:
+c = 0
 
-        P2 = 1
+Vowel = ''
+for i in a :
+    #print("Starting of FOR,P1" ,P1)
+    #print("Starting of FOR,P2" , P2)
+
+
+    if i in ("A", "E", "I", "O" , "U" , "a" , "e" , "i" , "o" , "u") :
+        if P1 ==1 :
+            P2 = P2 + 1
+            FirstVowel = i
+            Vowel = "".join((Vowel, FirstVowel))
+
 
     else :
-        if i in ("A", "E", "I", "O" , "U" , "a" , "e" , "i" , "o" , "u") and P1 == 1 and P2 == 1 and P3==0 and P4 ==0:
-            P3 = 1
+        if P1 == 1 and P2 >= 2 :
+            print(Vowel)
+            c = 1
+            #print("After PRINT P1" , P1)
+            #print("After PRINT P1" , P2)
+            Vowel = ''
+            P2 = 0
+
         else :
-            if i in ("A", "E", "I", "O" , "U" , "a" , "e" , "i" , "o" , "u") and P1==1 and P2 == 1 and P3==1 and P4==0:
-                P1 = 0
-                P2 = 0
-                P3 = 0
-            else :
-                if 1 == 1 and P2 == 1 and P3==1 and P4 ==0:
-                    P4 = 1
-
-    if P1 == 1 and P2 ==2 and P3 == 3 and P4 == 4 :
-        print(i)
+            P1 = 1
+            P2 = 0
+            Vowel = ''
 
 
-
-
-
-
-
-
-
-    print(P1)
-    print(P2)
-    print(P3)
-    print(P4)
-    print("####################")
-    
+if c != 1 :
+    print("-1")
